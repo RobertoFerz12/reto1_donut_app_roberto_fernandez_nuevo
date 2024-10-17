@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class DonutTile extends StatelessWidget {
   final String donutFlavor;
   final String donutPrice;
-  final dynamic
-      donutColor; // dynamic porque será de tipo Color y también usará []
+  final dynamic donutColor; // Dynamic porque será tipo Color y también usará[]
   final String imageName;
 
+  // Valor fijo para el borde circular
   final double borderRadius = 24;
 
   const DonutTile({
     super.key,
     required this.donutFlavor,
     required this.donutPrice,
-    this.donutColor,
+    required this.donutColor,
     required this.imageName,
   });
 
@@ -23,14 +23,14 @@ class DonutTile extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: Container(
         decoration: BoxDecoration(
-          color: donutColor[50], // Aquí se usa el dynamic
+          color: donutColor[50],
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: Column(
           children: [
-            // Precio de la dona
+            // Donut Price
             Row(
-              // Alinear a la derecha
+              // Alinear el precio a la derecha
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
@@ -41,8 +41,10 @@ class DonutTile extends StatelessWidget {
                       bottomLeft: Radius.circular(borderRadius),
                     ),
                   ),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 18,
+                  ),
                   child: Text(
                     '\$$donutPrice',
                     style: TextStyle(
@@ -51,38 +53,61 @@ class DonutTile extends StatelessWidget {
                       color: donutColor[800],
                     ),
                   ),
-                )
+                ),
               ],
             ),
-            // Imagen de la dona
+
+            // Donut picture
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
               child: Image.asset(imageName),
             ),
-            // Texto del sabor de la dona
-            Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 4), // Un padding más pequeño
-              child: Text(
-                donutFlavor,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight:
-                      FontWeight.bold, // Puedes cambiar el color si lo deseas
-                ),
+
+            // Donut Flavor Text
+            Text(
+              donutFlavor, // Variable con el sabor del donut
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            // Texto "Dunkin's" debajo del sabor
-            Padding(
-              padding: const EdgeInsets.only(
-                  bottom: 12), // Opcionalmente agrega espacio extra si deseas
-              child: Text(
-                "Dunkin's",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[
-                      600], // Un color gris para darle un toque secundario
-                ),
+
+            // Texto adicional debajo del sabor
+            const Text(
+              'Dunkin\'s',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+            ),
+
+            // Espacio adicional antes de los botones
+            const SizedBox(height: 10),
+
+            // Love icon + add button"
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // Espaciado entre los widgets
+                children: [
+                  // Icono de favorito
+                  Icon(
+                    Icons.favorite, // Ícono de corazón vacío
+                    color: Colors.pink, // Color rosado (Pink 400)
+                  ),
+
+                  // Texto "Add"
+                  Text(
+                    'Add',
+                    style: TextStyle(
+                        color: Colors.black, // Color gris para el texto
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.black),
+                  ),
+                ],
               ),
             ),
           ],
